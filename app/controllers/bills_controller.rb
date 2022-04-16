@@ -16,6 +16,8 @@ class BillsController < ApplicationController
   # POST /bills
   def create
     @bill = Bill.new(bill_params)
+    @bill.invoice_number = Faker::Barcode.ean(8)
+    @bill.status = 'pending'
 
     if @bill.save
       render json: @bill, status: :created, location: @bill
