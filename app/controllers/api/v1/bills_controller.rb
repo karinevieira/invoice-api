@@ -1,4 +1,4 @@
-class BillsController < ApplicationController
+class Api::V1::BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update, :destroy]
 
   # GET /bills
@@ -20,7 +20,7 @@ class BillsController < ApplicationController
     @bill.status = 'pending'
 
     if @bill.save
-      render json: @bill, status: :created, location: @bill
+      render json: @bill, status: :created, location: api_bill_url(@bill)
     else
       render json: @bill.errors, status: :unprocessable_entity
     end
