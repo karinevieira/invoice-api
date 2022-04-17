@@ -48,6 +48,7 @@ class Api::V1::BillsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bill_params
-      params.require(:bill).permit(:invoice_number, :due_date, :description, :status)
+      params.require(:bill).permit(:invoice_number, :due_date, :description, :status,
+                                   bill_items_attributes: [:id, :name, :quantity, :price, :total, :bill_id, :_destroy])
     end
 end
