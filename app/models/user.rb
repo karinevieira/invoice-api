@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
          :validatable
          
   include DeviseTokenAuth::Concerns::User
+
+  has_many :bills, dependent: :destroy
 end
