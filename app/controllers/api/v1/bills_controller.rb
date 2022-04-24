@@ -1,9 +1,10 @@
 class Api::V1::BillsController < ApplicationController
+  before_action :authenticate_api_user!
   before_action :set_bill, only: [:show, :update, :destroy]
 
   # GET /bills
   def index
-    @bills = Bill.all
+    @bills = current_api_user.bills.all
 
     render json: @bills
   end
@@ -15,7 +16,7 @@ class Api::V1::BillsController < ApplicationController
 
   # POST /bills
   def create
-    @bill = Bill.new(bill_params)
+    @bill = current_api_user.bills.new(bill_params)
     @bill.invoice_number = Faker::Barcode.ean(8)
     @bill.status = 'pending'
 
@@ -43,7 +44,7 @@ class Api::V1::BillsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bill
-      @bill = Bill.find(params[:id])
+      @bill = current_api_user.bills.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
