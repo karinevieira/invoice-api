@@ -3,4 +3,5 @@ class BillSerializer < ActiveModel::Serializer
 
   belongs_to :user
   has_many :bill_items
+  has_one :customer
 end
