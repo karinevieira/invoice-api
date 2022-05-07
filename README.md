@@ -82,3 +82,27 @@ For the follow requests:
 | ``POST /api/bills``          | Create a new bill.            | due_date: [String], description: [String]                                        |
 | ``PUT /api/bills/:id``       | Edit the details of an existing bill. | due_date: [String], description: [String]                                |
 | ``DELETE /api/bills/:id``    | Remove the bill.                      |                                                                |
+
+### Usage
+
+To create or edit a bill
+
+```json
+{
+	"due_date": "2022-05-07",
+	"description": "Keyboard sale",
+	"bill_items_attributes": [
+		{
+			"name": "GAMER T-DAGGER MECHANICAL KEYBOARD",
+			"quantity": "1",
+			"price": "249.50",
+			"total": "249.50"
+		}
+	],
+	"customer_attributes": {
+		"name": "Karine Vieira",
+		"cpf": "964.775.040-49",
+		"phone": "(11) 79657-5709"
+	}
+}
+```
